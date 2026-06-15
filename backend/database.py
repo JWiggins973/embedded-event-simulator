@@ -42,3 +42,9 @@ def get_events():
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM Events")
         return cursor.fetchall()
+
+# Get a summary of events by type
+def get_summary():
+    with get_connection() as conn:
+        cursor = conn.execute("SELECT event_type, COUNT(*) FROM Events GROUP BY event_type")
+        return cursor.fetchall()

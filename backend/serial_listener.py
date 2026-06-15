@@ -18,7 +18,7 @@ SEVERITY_MAP = {
 # Initialize the serial connection
 ser = serial.Serial(PORT, BAUD_RATE)
 
-# Main loop to read serial data
+# Main loop to read serial datawrite to the database
 try:
     while True:
         data = ser.readline().decode('utf-8').strip()
