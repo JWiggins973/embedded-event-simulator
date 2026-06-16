@@ -1,6 +1,6 @@
 import serial
 import database
-from datetime import datetime
+from datetime import datetime, time
 
 # Serial port configuration
 PORT = "/dev/tty.usbmodem14101"
@@ -21,6 +21,20 @@ SEVERITY_MAP = {
 def init_serial():
     global ser
     ser = serial.Serial(PORT, BAUD_RATE)
+
+
+# Reconnect to the serial port
+def reconnect():
+    global ser
+    print("Arduino disconnected. Attempting to reconnect...")
+    while True:
+        try:
+            ser = serial.Serial(PORT, BAUD_RATE)
+            print("Reconnected successfully.")
+            break
+        except serial.SerialException:
+            print("Retrying in 5 seconds...")
+            time.sleep(5)
 
 
 # Read data from the serial port
@@ -52,6 +66,8 @@ if __name__ == "__main__":
             data = read_serial_data()
             if process_serial_data(data):
                 write_to_database(data)
+    except serial.SerialException:
+        reconnect()
 
     # end on keyboard interrupt
     except KeyboardInterrupt:

@@ -7,6 +7,7 @@ const int BUZZER = 10;
 bool allFourPressed = false;
 
 // arrays 
+const int BUTTONS[] = {2, 3, 4, 5};
 int numberOfButtons = sizeof(BUTTONS) / sizeof(BUTTONS[0]);
 // strings use heap mem may crash 2KB RAM, const char* stores on flash storage
 const char* MESSAGE[] = {"TEMP_HIGH", "HUMIDITY_HIGH", "AIR_QUALITY_ALERT", "SYSTEM_FAULT"};
