@@ -53,3 +53,9 @@ def test_write_to_database(test_db):
     assert database.get_events()[0][2] == "2026-06-14 17:45:32"
     assert database.get_events()[0][3] == "MEDIUM"
     assert database.get_events()[0][4] is None
+
+
+# Test all valid events
+def test_all_valid_events():
+    for event in serial_listener.SEVERITY_MAP:
+        assert serial_listener.process_serial_data(event) == True
