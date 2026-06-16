@@ -1,6 +1,6 @@
 # Embedded Event Simulator & Fault Monitor
 
-![Tests](https://github.com/JWiggins973/embedded-event-simulator/actions/workflows/tests.yml/badge.svg)
+[![Run Tests](https://github.com/JWiggins973/embedded-event-simulator/actions/workflows/python-app.yml/badge.svg)](https://github.com/JWiggins973/embedded-event-simulator/actions/workflows/python-app.yml)
 
 ---
 
