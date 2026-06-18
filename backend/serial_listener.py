@@ -3,7 +3,7 @@ import database
 from datetime import datetime, time
 
 # Serial port configuration
-PORT = "/dev/tty.usbmodem14101"
+PORT = "/dev/cu.usbmodem14101"
 BAUD_RATE = 9600
 ser = None
 
@@ -60,16 +60,21 @@ def write_to_database(data, timestamp=None):
 
 # Main loop to read serial datawrite to the database
 if __name__ == "__main__":
+    database.init_database()
     init_serial()
-    try:
-        while True:
+    reading = True
+    while reading:
+        print("Reading serial data...")
+        try:
             data = read_serial_data()
             if process_serial_data(data):
                 write_to_database(data)
-    except serial.SerialException:
-        reconnect()
+                print(f"Event logged: {data}")
+        except serial.SerialException:
+            reconnect()
 
-    # end on keyboard interrupt
-    except KeyboardInterrupt:
-        print("Serial listener stopped.")
-        ser.close()
+        # end on keyboard interrupt
+        except KeyboardInterrupt:
+            print("Serial listener stopped.")
+            ser.close()
+            reading = False

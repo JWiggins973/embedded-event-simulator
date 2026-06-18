@@ -14,9 +14,9 @@ pytest test/ -v
 
 | File | Tests | What's Covered |
 |---|---|---|
-| test_database.py | 11 | Insert, query, filter, aggregation, edge cases |
-| test_serial.py | 8 | Validation, mocked serial, severity mapping |
-| test_cli.py | 11 | All commands, formatting, empty states, edge cases |
+| test_database.py | 10 | Insert, query, filter, counting, edge cases |
+| test_serial.py | 7 | Validation, mocked serial, severity mapping |
+| test_cli.py | 13 | All commands, formatting, empty states, edge cases |
 
 ## ⚙️ How It Works
 
@@ -36,14 +36,12 @@ pytest test/ -v
 
 ## 🛠 Stack
 
-| Layer | Technology |
-|---|---|
-| Firmware | Arduino UNO, C++ |
-| Serial Processing | Python, pyserial |
-| Database | SQLite |
-| CLI | Click |
-| Testing | Pytest, unittest.mock |
-| CI/CD | GitHub Actions |
+- **Firmware:** Arduino UNO, C++
+- **Serial Processing:** Python, pyserial
+- **Database:** SQLite
+- **CLI:** Click
+- **Testing:** Pytest, unittest.mock
+- **CI/CD:** GitHub Actions
 
 ## 📁 Project Structure
 
@@ -65,12 +63,12 @@ embedded-event-simulator/
 
 ## ⌨️ CLI Commands
 
-| Command | Description |
-|---|---|
-| `python backend/cli.py events` | All logged events |
-| `python backend/cli.py summary` | Event counts by type |
-| `python backend/cli.py search TEMP_HIGH` | Search by event type |
-| `python backend/cli.py system-failure` | System failure events only |
+```bash
+python backend/cli.py events            # All logged events
+python backend/cli.py summary           # Event counts by type
+python backend/cli.py search TEMP_HIGH  # Search by event type
+python backend/cli.py system-failure    # System failure events only
+```
 
 Duration shows `None` in V1. Recovery event tracking coming in V2.
 

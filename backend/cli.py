@@ -7,6 +7,7 @@ def cli():
     pass
 
 
+# python backend/cli.py events
 @cli.command()
 def events():
     results = database.get_events()
@@ -16,6 +17,7 @@ def events():
         )
 
 
+# python backend/cli.py summary
 @cli.command()
 def summary():
     results = database.get_summary()
@@ -26,6 +28,7 @@ def summary():
         click.echo(f"EVENT: {row[0]} | COUNT: {row[1]}")
 
 
+# python backend/cli.py search QUERY
 @cli.command()
 @click.argument("event_type")
 def search(event_type):
@@ -36,6 +39,7 @@ def search(event_type):
         click.echo(f"EVENT: {rows[1]} | TIME: {rows[2]} | SEVERITY: {rows[3]}")
 
 
+# python backend/cli.py system-failure
 @cli.command()
 def system_failure():
     results = database.get_events_by_type("SYSTEM_FAILURE_CHECK_ALL")
