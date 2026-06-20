@@ -50,7 +50,7 @@ pytest test/ -v
 ```
 embedded-event-simulator/
 ├── .github/workflows/tests.yml
-├── arduino/event_simulator.ino
+├── arduino/event-sim/event-sim.ino
 ├── backend/
 │   ├── database.py
 │   ├── serial_listener.py
@@ -59,6 +59,8 @@ embedded-event-simulator/
 │   ├── test_database.py
 │   ├── test_serial.py
 │   └── test_cli.py
+├── docs/test_plan.md
+├── images/
 ├── requirements.txt
 └── README.md
 ```
@@ -82,8 +84,15 @@ cd embedded-event-simulator
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-python backend/serial_listener.py
 ```
+
+1. Flash `arduino/event-sim/event-sim.ino` to the Arduino with the Arduino IDE.
+2. Find your serial port: `pyserial-ports` (installed with pyserial).
+3. Set `PORT` in `backend/serial_listener.py` to that port.
+4. Run the listener:
+   ```bash
+   python backend/serial_listener.py
+   ```
 
 ## 📍 Coming Soon
 
