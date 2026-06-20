@@ -1,5 +1,7 @@
 # Embedded Event Simulator & Fault Monitor
 
+![Arduino Build](images/Arduino_light.jpeg)
+
 [![Run Tests](https://github.com/JWiggins973/embedded-event-simulator/actions/workflows/python-app.yml/badge.svg)](https://github.com/JWiggins973/embedded-event-simulator/actions/workflows/python-app.yml)
 
 Hazard simulator with LED indicators and buzzer when system completely fails. Quality assurance with extensive Pytest suite and event logger.
