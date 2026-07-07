@@ -62,6 +62,7 @@ embedded-event-simulator/
 ├── docs/test_plan.md
 ├── images/
 ├── requirements.txt
+├── run.sh
 └── README.md
 ```
 
@@ -74,7 +75,7 @@ python backend/cli.py search TEMP_HIGH  # Search by event type
 python backend/cli.py system-failure    # System failure events only
 ```
 
-Duration shows `None` in V1. Recovery event tracking coming in V2.
+Duration shows `None` in V1. Event duration tracking coming in V2.
 
 ## 💻 Run Locally
 
@@ -89,9 +90,10 @@ pip install -r requirements.txt
 1. Flash `arduino/event-sim/event-sim.ino` to the Arduino with the Arduino IDE.
 2. Find your serial port: `pyserial-ports` (installed with pyserial).
 3. Set `PORT` in `backend/serial_listener.py` to that port.
-4. Run the listener:
+4. Run the interactive menu:
    ```bash
-   python backend/serial_listener.py
+   chmod +x run.sh
+   ./run.sh
    ```
 
 ## 📍 Coming Soon
