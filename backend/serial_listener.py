@@ -1,6 +1,7 @@
 import serial
+import time
 import database
-from datetime import datetime, time
+from datetime import datetime
 
 # Serial port configuration
 PORT = "/dev/cu.usbmodem14101"

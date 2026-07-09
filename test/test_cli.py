@@ -16,7 +16,7 @@ def test_db(tmp_path):
 @pytest.fixture
 def populated_db(test_db):
     test_db.insert_event("TEMP_HIGH", "2026-06-14 17:45:32", "MEDIUM", None)
-    test_db.insert_event("SYSTEM_FAULT", "2026-06-14 17:46:00", "CRITICAL", None)
+    test_db.insert_event("SYSTEM_FAULT", "2026-06-14 17:46:00", "HIGH", None)
     test_db.insert_event("HUMIDITY_HIGH", "2026-06-14 17:47:00", "MEDIUM", None)
     test_db.insert_event(
         "SYSTEM_FAILURE_CHECK_ALL", "2026-06-14 17:48:00", "CRITICAL", None
@@ -67,7 +67,7 @@ def test_events_command_formating(populated_db):
         in result.output
     )
     assert (
-        "EVENT: SYSTEM_FAULT | TIME: 2026-06-14 17:46:00 | SEVERITY: CRITICAL"
+        "EVENT: SYSTEM_FAULT | TIME: 2026-06-14 17:46:00 | SEVERITY: HIGH"
         in result.output
     )
     assert (
