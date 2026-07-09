@@ -14,7 +14,7 @@ def test_db(tmp_path):
 @pytest.fixture
 def populated_db(test_db):
     test_db.insert_event("TEMP_HIGH", "2026-06-14 17:45:32", "MEDIUM", None)
-    test_db.insert_event("SYSTEM_FAULT", "2026-06-14 17:46:00", "CRITICAL", None)
+    test_db.insert_event("SYSTEM_FAULT", "2026-06-14 17:46:00", "HIGH", None)
     test_db.insert_event("HUMIDITY_HIGH", "2026-06-14 17:47:00", "MEDIUM", None)
     return test_db
 
@@ -31,14 +31,14 @@ def test_insert_event(test_db):
 def test_insert_events_many(test_db):
     events = [
         ("TEMP_HIGH", "2026-06-14 17:45:32", "MEDIUM", None),
-        ("SYSTEM_FAULT", "2026-06-14 17:46:00", "CRITICAL", None),
+        ("SYSTEM_FAULT", "2026-06-14 17:46:00", "HIGH", None),
         ("HUMIDITY_HIGH", "2026-06-14 17:47:00", "MEDIUM", None),
     ]
     for event in events:
         test_db.insert_event(*event)
     assert test_db.get_events() == [
         (1, "TEMP_HIGH", "2026-06-14 17:45:32", "MEDIUM", None),
-        (2, "SYSTEM_FAULT", "2026-06-14 17:46:00", "CRITICAL", None),
+        (2, "SYSTEM_FAULT", "2026-06-14 17:46:00", "HIGH", None),
         (3, "HUMIDITY_HIGH", "2026-06-14 17:47:00", "MEDIUM", None),
     ]
 
@@ -47,7 +47,7 @@ def test_insert_events_many(test_db):
 def test_insert_five_events(test_db):
     events = [
         ("TEMP_HIGH", "2026-06-14 17:45:32", "MEDIUM", None),
-        ("SYSTEM_FAULT", "2026-06-14 17:46:00", "CRITICAL", None),
+        ("SYSTEM_FAULT", "2026-06-14 17:46:00", "HIGH", None),
         ("HUMIDITY_HIGH", "2026-06-14 17:47:00", "MEDIUM", None),
         ("SYSTEM_FAILURE_CHECK_ALL", "2026-06-14 17:48:00", "CRITICAL", None),
         ("TEMP_LOW", "2026-06-14 17:49:00", "MEDIUM", None),
@@ -68,7 +68,7 @@ def test_get_event_by_type(populated_db):
         (1, "TEMP_HIGH", "2026-06-14 17:45:32", "MEDIUM", None)
     ]
     assert populated_db.get_events_by_type("SYSTEM_FAULT") == [
-        (2, "SYSTEM_FAULT", "2026-06-14 17:46:00", "CRITICAL", None)
+        (2, "SYSTEM_FAULT", "2026-06-14 17:46:00", "HIGH", None)
     ]
     assert populated_db.get_events_by_type("HUMIDITY_HIGH") == [
         (3, "HUMIDITY_HIGH", "2026-06-14 17:47:00", "MEDIUM", None)
@@ -79,7 +79,7 @@ def test_get_event_by_type(populated_db):
 def test_get_events(populated_db):
     assert populated_db.get_events() == [
         (1, "TEMP_HIGH", "2026-06-14 17:45:32", "MEDIUM", None),
-        (2, "SYSTEM_FAULT", "2026-06-14 17:46:00", "CRITICAL", None),
+        (2, "SYSTEM_FAULT", "2026-06-14 17:46:00", "HIGH", None),
         (3, "HUMIDITY_HIGH", "2026-06-14 17:47:00", "MEDIUM", None),
     ]
 
