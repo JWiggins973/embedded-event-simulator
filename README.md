@@ -28,7 +28,9 @@ pip install -r requirements.txt
 
 **2. Flash and configure:**
 
-1. Flash `arduino/event-sim/event-sim.ino` to the Arduino with the Arduino IDE.
+1. Flash one sketch to your board with the Arduino IDE:
+   - Arduino UNO R3: `arduino/event-sim/event-sim.ino`
+   - ESP32-S3: `arduino/wokwi-esp32/event-sim-esp32.ino`
 2. Find your serial port: `pyserial-ports` (installed with pyserial).
 3. Set `PORT` in `backend/serial_listener.py` to that port.
 
@@ -59,56 +61,23 @@ Duration shows `None` in V1. Event duration tracking coming in V2.
 - **Testing:** Pytest, unittest.mock
 - **CI/CD:** GitHub Actions
 
-## 📁 Project Structure
+## 📍 Coming Soon
 
-```
-embedded-event-simulator/
-├── .github/workflows/tests.yml
-├── arduino/
-│   ├── event-sim/event-sim.ino
-│   └── event-sim-esp32.ino
-├── backend/
-│   ├── database.py
-│   ├── serial_listener.py
-│   └── cli.py
-├── test/
-│   ├── test_database.py
-│   ├── test_serial.py
-│   └── test_cli.py
-├── docs/
-│   ├── cameo-model/
-│   │   ├── architecture-overview.jpg
-│   │   └── event-sim.sysml
-│   └── test_plan.md
-├── wokwi/
-│   └── diagram.json
-├── images/
-├── requirements.txt
-├── run.sh
-└── README.md
-```
+WiFi support on the ESP32-S3 — replacing serial.py with FastAPI for HTTP POST.
 
 ## 🧪 Testing
 
-30 tests covering core functionality and edge cases including mocked hardware interfaces. Runs without Arduino connected.
+30 tests covering core functionality and edge cases. Runs without Arduino connected.
 
 ```bash
 pytest test/ -v
 ```
 
-| File | Tests | What's Covered |
-|---|---|---|
-| test_database.py | 10 | Insert, query, filter, counting, edge cases |
-| test_serial.py | 7 | Validation, mocked serial, severity mapping |
-| test_cli.py | 13 | All commands, formatting, empty states, edge cases |
-
-## 📍 Coming Soon
-
-ESP32-S3 with WiFi support — replacing USB serial transport with HTTP POST to a FastAPI endpoint.
+See the [test plan](docs/test_plan.md) for coverage details and scenarios.
 
 ## 🔗 Hardware References
 
-- [Wokwi Schematic](wokwi/diagram.json)
+- [Wokwi Schematic](arduino/wokwi-esp32/diagram.json)
 - [TinkerCAD Schematic](https://www.tinkercad.com/things/cTCtQ8Y2Rf1-embedded-event-simulator)
 - [RexQualis Arduino UNO R3 Kit](https://www.amazon.com/REXQualis-Development-Membrane-Receiver-Detailed/dp/B074WMHLQ4)
 

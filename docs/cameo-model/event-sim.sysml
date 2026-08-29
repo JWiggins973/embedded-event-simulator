@@ -1,3 +1,5 @@
+/// Diagram of all the systems parts
+/// Shows how they connect and what they are required to do
 package Model {
     part def ButtonTask;
     part def EventQueue;
@@ -5,18 +7,23 @@ package Model {
     part def SerialListener;
     part def Database;
     part def CLI;
+    
     requirement def ButtonDetectionReq {
         doc /* The system shall detect a button state transition and generate a single event for each valid button press. */
     }
+
     requirement def SerialTransmitReq {
         doc /* The alert task shall retrieve queued events and transmit event information through the serial interface for external monitoring. */
     }
+
     requirement def EventQueueTransferReq {
         doc /* The system shall transfer generated events between independent tasks using an event queue mechanism. */
     }
+
     requirement buttonDetection : ButtonDetectionReq;
     requirement serialTransmit : SerialTransmitReq;
     requirement eventQueueTransfer : EventQueueTransferReq;
+    
     part myButtonTask : ButtonTask {
         satisfy buttonDetection;
     }
@@ -29,6 +36,8 @@ package Model {
     part mySerialListener : SerialListener;
     part myDatabase : Database;
     part myCLI : CLI;
+
+
     connection connect myButtonTask to myEventQueue;
     connection connect myEventQueue to myAlertTask;
     connection microcontrollerToHostSerial connect myAlertTask to mySerialListener;
