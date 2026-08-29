@@ -1,28 +1,26 @@
 # Test Plan — Embedded Event Simulator
 
 ## Overview
-Validates event ingestion, fault logging, and CLI
-reporting without physical hardware.
+Checks that events get saved correctly and show up right in the CLI —
+all without needing a real Arduino plugged in.
 
 ## Environment
 - Python, Pytest, SQLite, GitHub Actions
-- Serial hardware simulated via MagicMock
+- The serial connection is faked (mocked), so no real hardware is needed to run the tests
 
 ## Scope
 | ID | Area | What It Tests |
 |---|---|---|
-| TC-001 | Database | Event inserts, queries, and counts |
-| TC-002 | Database | Timestamp and severity fields save correctly |
-| TC-003 | Database | Invalid input and empty DB handled gracefully |
-| TC-004 | Serial | Valid and invalid messages parsed correctly |
-| TC-005 | Serial | All valid event types mapped to correct severity |
-| TC-006 | CLI | Events, summary, search, and system-failure commands return correct output |
-| TC-007 | CLI | Empty results and invalid search input handled gracefully |
+| TC-001 | Database | Adding, looking up, and counting events works |
+| TC-002 | Database | Timestamp and severity get saved correctly |
+| TC-003 | Database | Bad input or an empty database doesn't crash anything |
+| TC-004 | Serial | Good and bad messages get parsed correctly |
+| TC-005 | Serial | Every event type maps to the right severity level |
+| TC-006 | CLI | The events, summary, search, and system-failure commands show the right output |
+| TC-007 | CLI | Empty results and bad search input are handled without crashing |
 
 ## Out of Scope
-- Duration tracking (deferred to V2)
-- Live Arduino serial connection (mocked in CI)
+- Testing with a real Arduino connected (the CI only uses the mocked version)
 
 ## Known Limitations
-- 30 tests total across 3 test files
-- Physical hardware not required to run suite
+- Behavior on real hardware is checked manually, not by these automated tests
