@@ -1,7 +1,7 @@
 # Test Plan — Embedded Event Simulator
 
 ## Overview
-Checks that events get saved correctly and show up right in the CLI —
+Checks that events get saved correctly and show up right in the CLI,
 all without needing a real Arduino plugged in.
 
 ## Environment
@@ -19,8 +19,5 @@ all without needing a real Arduino plugged in.
 | TC-006 | CLI | The events, summary, search, and system-failure commands show the right output |
 | TC-007 | CLI | Empty results and bad search input are handled without crashing |
 
-## Out of Scope
-- Testing with a real Arduino connected (the CI only uses the mocked version)
-
 ## Known Limitations
-- Behavior on real hardware is checked manually, not by these automated tests
+- Actual behavior on real hardware is checked manually, not by these automated tests

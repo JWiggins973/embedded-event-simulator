@@ -70,7 +70,12 @@ WiFi support on the ESP32-S3 — replacing serial.py with FastAPI for HTTP POST.
 30 tests covering core functionality and edge cases. Runs without Arduino connected.
 
 ```bash
-pytest test/ -v
+pytest -v 
+```
+or
+```bash
+
+pytest
 ```
 
 See the [test plan](docs/test_plan.md) for coverage details and scenarios.
