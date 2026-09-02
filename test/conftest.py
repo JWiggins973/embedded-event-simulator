@@ -1,4 +1,11 @@
 # tests/conftest.py
-import sys, os
+import pytest
+import database
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "backend"))
+
+# Fixture for creating a temporary database for testing
+@pytest.fixture
+def test_db(tmp_path):
+    database.DB_NAME = str(tmp_path / "test.db")
+    database.init_database()
+    return database

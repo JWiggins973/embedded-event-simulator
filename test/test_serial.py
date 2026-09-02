@@ -1,16 +1,6 @@
-import pytest
 from unittest.mock import MagicMock
 import serial_listener
 import database
-from datetime import datetime
-
-
-# Fixture for creating a temporary database for testing
-@pytest.fixture
-def test_db(tmp_path):
-    database.DB_NAME = str(tmp_path / "test.db")
-    database.init_database()
-    return database
 
 
 # Test reading serial data
