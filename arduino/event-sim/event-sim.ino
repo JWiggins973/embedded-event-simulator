@@ -48,7 +48,7 @@ void loop()
     }
   }
   
-  // when all four buttins pressed flash led and sound alarm
+  // when all four buttons pressed flash led and sound alarm
   // write error message
   if(pressedCount == 4) {
     beep();
@@ -74,7 +74,7 @@ void loop()
        lastState[i] = states[i];
      }
    }
-  // all eslse no message led or buzzer
+  // all else no message led or buzzer
   else {
     allFourPressed = false;
     digitalWrite(LED, LOW);
